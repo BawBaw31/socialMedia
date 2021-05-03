@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from '../../services/accounts.service';
+import { MessageService } from '../../services/message.service';
 import { NewUser } from '../../interfaces/user';
 
 @Component({
@@ -16,7 +17,7 @@ export class AuthenticatorComponent implements OnInit {
     verifPassword: ''
   }
 
-  constructor(private accountsService: AccountsService) { }
+  constructor(private accountsService: AccountsService, private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
@@ -60,16 +61,12 @@ export class AuthenticatorComponent implements OnInit {
   }
 
   // Connecting with api service
-  addUser(name: string, email: string, password: string, verifPassword: string) :void{
-    // Set newUser
-    this.newUser.name = name;
-    this.newUser.email = email;
-    this.newUser.password = password;
-    this.newUser.verifPassword = verifPassword;
-
-    // Call api service
+  addUser() :void{
     this.accountsService.addUser(this.newUser)
-    .subscribe(message => alert(message));
+    .subscribe(
+      res => this.messageService.add({type: 'success', text: res.message}),
+      err => this.messageService.add({type: 'error', text: err.error})
+    );
   }
 
 }

@@ -1,5 +1,12 @@
+app-message {
+  width: 100%;
+  max-width: 30em;
+  padding: 1.5em;
+}
+
 #authenticator {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1em;

@@ -1,0 +1,11 @@
+button {
+  margin: .5em;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

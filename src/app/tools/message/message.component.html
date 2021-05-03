@@ -1,0 +1,15 @@
+<div *ngIf="messageService.messages.length" id="message">
+  <mat-card id="message-content">
+    <mat-card-header>
+      <mat-card-title>Messages</mat-card-title>
+    </mat-card-header>
+      <p *ngFor="let message of messageService.messages"
+      [ngClass]="{
+        'success':message.type==='success',
+        'error':message.type==='error'
+      }">
+        {{message.text}}
+      </p>
+    <button mat-flat-button (click)="messageService.clear()">Clear</button>
+  </mat-card>
+</div>

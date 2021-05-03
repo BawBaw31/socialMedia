@@ -4,3 +4,8 @@ export interface NewUser {
   password: string,
   verifPassword: string
 }
+
+export interface User {
+  email: string,
+  password: string
+}

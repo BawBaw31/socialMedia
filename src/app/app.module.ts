@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 // MaterialUI imports
 import { MatButtonModule } from '@angular/material/button';
@@ -14,12 +15,14 @@ import { MatCardModule } from '@angular/material/card';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthenticatorComponent, AuthenticatorCompState } from './tools/authenticator/authenticator.component';
+import { MessageComponent } from './tools/message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AuthenticatorComponent
+    AuthenticatorComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { AuthenticatorComponent, AuthenticatorCompState } from './tools/authenti
     BrowserAnimationsModule,
     MatButtonModule,
     MatBottomSheetModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
