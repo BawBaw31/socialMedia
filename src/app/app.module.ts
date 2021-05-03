@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 // MaterialUI imports
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 // Component imports
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
+import { AuthenticatorComponent, AuthenticatorCompState } from './tools/authenticator/authenticator.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AuthenticatorComponent } from './tools/authenticator/authenticator.comp
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,

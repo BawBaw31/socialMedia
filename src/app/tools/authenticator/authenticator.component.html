@@ -9,10 +9,12 @@
       <button mat-flat-button color='warn'>Login</button>
     </div>
     <div *ngIf="isRegisterState()">
-      <input placeholder='Email'>
-      <input placeholder='Password' type='password'>
-      <input placeholder='Confirm Password' type='password'>
-      <button mat-flat-button color='warn'>Create</button>
+      <input #name placeholder='User Name'>
+      <input #email placeholder='Email'>
+      <input #password placeholder='Password' type='password'>
+      <input #verifPassword placeholder='Confirm Password' type='password'>
+      <button (click)='addUser(name.value, email.value, password.value, verifPassword.value)'
+      mat-flat-button color='warn'>Create</button>
     </div>
     <div *ngIf="isForgotPasswordState()">
       <input placeholder='Email'>

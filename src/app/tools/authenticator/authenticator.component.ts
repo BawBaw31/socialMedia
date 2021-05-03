@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountsService } from '../../services/accounts.service';
+import { NewUser } from '../../interfaces/user';
 
 @Component({
   selector: 'app-authenticator',
@@ -7,12 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticatorComponent implements OnInit {
   state = AuthenticatorCompState.LOGIN;
+  newUser: NewUser = {
+    name: '',
+    email: '',
+    password: '',
+    verifPassword: ''
+  }
 
-  constructor() { }
+  constructor(private accountsService: AccountsService) { }
 
   ngOnInit(): void {
   }
 
+  // On click switching forms
   onForgotPasswordClick(){
     this.state = AuthenticatorCompState.FORGOT_PASSWORD;
   }
@@ -25,6 +34,7 @@ export class AuthenticatorComponent implements OnInit {
     this.state = AuthenticatorCompState.LOGIN;
   }
 
+  // Switching variable state
   isLoginState(){
     return this.state == AuthenticatorCompState.LOGIN;
   }
@@ -37,6 +47,7 @@ export class AuthenticatorComponent implements OnInit {
     return this.state == AuthenticatorCompState.FORGOT_PASSWORD;
   }
 
+  // Switching h1 text
   getStateText(){
     switch(this.state){
       case AuthenticatorCompState.LOGIN:
@@ -48,7 +59,21 @@ export class AuthenticatorComponent implements OnInit {
     }
   }
 
+  // Connecting with api service
+  addUser(name: string, email: string, password: string, verifPassword: string) :void{
+    // Set newUser
+    this.newUser.name = name;
+    this.newUser.email = email;
+    this.newUser.password = password;
+    this.newUser.verifPassword = verifPassword;
+
+    // Call api service
+    this.accountsService.addUser(this.newUser)
+    .subscribe(message => alert(message));
+  }
+
 }
+
 
 export enum AuthenticatorCompState {
   LOGIN,
