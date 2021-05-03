@@ -5,9 +5,10 @@
       <mat-card-title>{{getStateText()}}</mat-card-title>
     </mat-card-header>
     <div *ngIf="isLoginState()">
-      <input placeholder="Email">
-      <input placeholder="Password" type="pasword">
-      <button mat-flat-button color='warn'>Login</button>
+      <input [(ngModel)]='logUser.email' placeholder="Email">
+      <input [(ngModel)]='logUser.password' placeholder="Password" type="password">
+      <button (click)='login()'
+      mat-flat-button color='warn'>Login</button>
     </div>
     <div *ngIf="isRegisterState()">
       <input [(ngModel)]='newUser.name' placeholder='User Name'>

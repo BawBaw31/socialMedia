@@ -5,7 +5,7 @@ export interface NewUser {
   verifPassword: string
 }
 
-export interface User {
+export interface LogUser {
   email: string,
   password: string
 }

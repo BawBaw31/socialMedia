@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from '../../services/accounts.service';
 import { MessageService } from '../../services/message.service';
-import { NewUser } from '../../interfaces/user';
+import { NewUser, LogUser} from '../../interfaces/user';
 
 @Component({
   selector: 'app-authenticator',
@@ -15,6 +15,10 @@ export class AuthenticatorComponent implements OnInit {
     email: '',
     password: '',
     verifPassword: ''
+  }
+  logUser: LogUser = {
+    email: '',
+    password: ''
   }
 
   constructor(private accountsService: AccountsService, private messageService: MessageService) { }
@@ -67,6 +71,14 @@ export class AuthenticatorComponent implements OnInit {
       res => this.messageService.add({type: 'success', text: res.message}),
       err => this.messageService.add({type: 'error', text: err.error})
     );
+  }
+
+  login() :void{
+    this.accountsService.login(this.logUser)
+    .subscribe(
+      res => this.messageService.add({type: 'success', text: res.token}),
+      err => this.messageService.add({type: 'error', text: err.error})
+    )
   }
 
 }
