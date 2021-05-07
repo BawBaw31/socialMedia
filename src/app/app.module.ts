@@ -14,15 +14,17 @@ import { MatCardModule } from '@angular/material/card';
 // Component imports
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AuthenticatorComponent, AuthenticatorCompState } from './tools/authenticator/authenticator.component';
+import { AuthenticatorComponent} from './tools/authenticator/authenticator.component';
 import { MessageComponent } from './tools/message/message.component';
+import { NewsComponent } from './pages/news/news.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AuthenticatorComponent,
-    MessageComponent
+    MessageComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

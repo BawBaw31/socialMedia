@@ -19,8 +19,9 @@
       mat-flat-button color='warn'>Create</button>
     </div>
     <div *ngIf="isForgotPasswordState()">
-      <input placeholder='Email'>
-      <button mat-flat-button color='warn'>Reset</button>
+      <input #email placeholder='Email'>
+      <button (click)='forgotPassword(email.value)'
+      mat-flat-button color='warn'>Reset</button>
     </div>
     <mat-card-actions align='end'>
       <button

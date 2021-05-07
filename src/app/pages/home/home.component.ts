@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from '../../tools/authenticator/authenticator.component';
 
 @Component({
@@ -9,13 +9,13 @@ import { AuthenticatorComponent } from '../../tools/authenticator/authenticator.
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private loginSheet: MatBottomSheet) { }
+  constructor(private loginSheet :MatBottomSheet) { }
 
   ngOnInit(): void {
   }
 
   onGetStartedClick() {
-    this.loginSheet.open(AuthenticatorComponent);
+    const bottomSheetRef: MatBottomSheetRef = this.loginSheet.open(AuthenticatorComponent);
   }
 
 }
