@@ -10,6 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+
+
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -17,6 +23,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthenticatorComponent} from './tools/authenticator/authenticator.component';
 import { MessageComponent } from './tools/message/message.component';
 import { NewsComponent } from './pages/news/news.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +32,23 @@ import { NewsComponent } from './pages/news/news.component';
     HomeComponent,
     AuthenticatorComponent,
     MessageComponent,
-    NewsComponent
+    NewsComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatButtonModule,
     MatBottomSheetModule,
     MatCardModule,
-    FormsModule
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

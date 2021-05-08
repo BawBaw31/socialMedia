@@ -1,0 +1,38 @@
+<mat-toolbar>
+  <!-- Logo -->
+  <span class='menu-item'>QueLaCarnlu</span>
+
+  <!-- Search bar -->
+  <form class='menu-item'>
+    <mat-form-field>
+      <mat-icon matPrefix>search</mat-icon>
+      <input type="text" matInput placeholder="Search">
+    </mat-form-field>
+  </form>
+
+  <span class="spacer"></span>
+
+  <!-- Name + Photo -->
+  <span class='menu-item'>Bawbaw31</span>
+  <img class='menu-item' src="#" alt="Bok">
+
+  <!-- Settings menu -->
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>dialpad</mat-icon>
+      <span>Redial</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>voicemail</mat-icon>
+      <span>Check voicemail</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>notifications_off</mat-icon>
+      <span>Disable alerts</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

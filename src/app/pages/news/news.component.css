@@ -6,4 +6,6 @@
   justify-content: center;
   background-color: #001013;
   color: white;
+  min-height: 800px;
+  min-width: 350px;
 }

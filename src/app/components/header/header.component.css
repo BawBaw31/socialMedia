@@ -1,0 +1,27 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar{
+  background: none;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5em;
+  z-index: 10;
+}
+
+.menu-item{
+  padding: 0 14px;
+}
+
+form {
+  min-width: 150px;
+  max-width: 400px;
+  width: 100%;
+}
+
+form mat-form-field {
+  width: 100%;
+}
