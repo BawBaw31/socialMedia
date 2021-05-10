@@ -11,7 +11,6 @@ import { NewUser, LogUser} from '../../interfaces/user';
   styleUrls: ['./authenticator.component.css']
 })
 export class AuthenticatorComponent implements OnInit {
-  @Output() public sendLogedIn: EventEmitter<boolean> = new EventEmitter();
   state = AuthenticatorCompState.LOGIN;
   newUser: NewUser = {
     name: '',
@@ -72,8 +71,11 @@ export class AuthenticatorComponent implements OnInit {
     this.messageService.clear();
     this.accountsService.addUser(this.newUser)
     .subscribe(
-      res => res.forEach(
-        (value:string) => this.messageService.add({type: 'success', text: value})),
+      res => {
+        res.forEach((value:string) =>
+          this.messageService.add({type: 'success', text: value}));
+        this.onLoginClick();
+      },
       err => err.error.forEach(
         (value:string) => this.messageService.add({type: 'error', text: value}))
     );
@@ -103,9 +105,7 @@ export class AuthenticatorComponent implements OnInit {
         (value:string) => this.messageService.add({type: 'error', text: value}))
     )
   }
-
 }
-
 
 export enum AuthenticatorCompState {
   LOGIN,

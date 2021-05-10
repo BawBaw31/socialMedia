@@ -6,7 +6,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NewsComponent } from './pages/news/news.component';
 
 const routes: Routes = [
-  {path:"news/:id", component: NewsComponent},
+  {path:"news/:userId", component: NewsComponent},
   {path: "", component: HomeComponent},
   {path: "**", component: HomeComponent}
 ];

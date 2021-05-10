@@ -5,15 +5,22 @@
 mat-toolbar{
   background: none;
   color: white;
+  background-color: #001013;
   position: fixed;
   top: 0;
   left: 0;
-  height: 5em;
+  height: 10vh;
   z-index: 10;
+}
+
+#avatar {
+  background-color: pink;
 }
 
 .menu-item{
   padding: 0 14px;
+  display: flex;
+  align-items: center;
 }
 
 form {

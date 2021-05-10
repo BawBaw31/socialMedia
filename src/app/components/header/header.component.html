@@ -1,7 +1,6 @@
 <mat-toolbar>
   <!-- Logo -->
   <span class='menu-item'>QueLaCarnlu</span>
-
   <!-- Search bar -->
   <form class='menu-item'>
     <mat-form-field>
@@ -10,28 +9,27 @@
     </mat-form-field>
   </form>
 
-  <span class="spacer"></span>
+  <div class="spacer"></div>
+
+  <!-- Create new post -->
+  <button (click)="openNewPostDialog()" mat-icon-button>
+    <mat-icon>add_circle</mat-icon>
+  </button>
 
   <!-- Name + Photo -->
-  <span class='menu-item'>Bawbaw31</span>
-  <img class='menu-item' src="#" alt="Bok">
+  <div class='menu-item'>
+  <span>Bawbaw31</span>
+  <div mat-card-avatar id="avatar"></div>
+  </div>
 
   <!-- Settings menu -->
   <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>settings</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voicemail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
+    <button (click)='logout()' mat-menu-item>
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
     </button>
   </mat-menu>
 
