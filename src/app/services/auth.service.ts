@@ -6,7 +6,7 @@ import { NewUser, LogUser } from '../interfaces/user';
 @Injectable({
   providedIn: 'root'
 })
-export class AccountsService {
+export class AuthService {
   baseUrl: string = "http://localhost:3000/api/";
   logedIn: boolean = false;
 
@@ -20,15 +20,9 @@ export class AccountsService {
     return this.logedIn;
   }
 
-  getNews(userId :string) :Observable<any>{
-    const headers = {'content-type': 'application/json'};
-    return this.http.get<any>(this.baseUrl + 'user/'+userId+'/news', {'headers': headers, "withCredentials": true});
-  }
-
   addUser(user :NewUser) :Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify(user);
-    console.log(body);
     return this.http.post<any>(this.baseUrl + 'auth/register', body, {'headers': headers});
   }
 

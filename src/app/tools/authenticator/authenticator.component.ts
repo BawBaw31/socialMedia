@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { AccountsService } from '../../services/accounts.service';
+import { AuthService } from '../../services/auth.service';
 import { MessageService } from '../../services/message.service';
 import { NewUser, LogUser} from '../../interfaces/user';
 
@@ -25,7 +25,7 @@ export class AuthenticatorComponent implements OnInit {
 
   constructor(
     private bottomSheet: MatBottomSheetRef<AuthenticatorComponent>,
-    private accountsService: AccountsService,
+    private authService: AuthService,
     private messageService: MessageService,
     private router: Router) { }
 
@@ -69,7 +69,7 @@ export class AuthenticatorComponent implements OnInit {
   // Connecting with api service
   addUser() :void{
     this.messageService.clear();
-    this.accountsService.addUser(this.newUser)
+    this.authService.addUser(this.newUser)
     .subscribe(
       res => {
         res.forEach((value:string) =>
@@ -83,11 +83,11 @@ export class AuthenticatorComponent implements OnInit {
 
   login() :void{
     this.messageService.clear();
-    this.accountsService.login(this.logUser)
+    this.authService.login(this.logUser)
     .subscribe(
       res => {
         this.bottomSheet.dismiss();
-        this.accountsService.setLogState(true);
+        this.authService.setLogState(true);
         this.router.navigate(['../news', res[0]]);
       },
       err => err.error.forEach(
@@ -97,9 +97,9 @@ export class AuthenticatorComponent implements OnInit {
 
   forgotPassword(email :string) :void{
     this.messageService.clear();
-    this.accountsService.forgotPassword(email)
+    this.authService.forgotPassword(email)
     .subscribe(
-      res =>res.forEach(
+      res => res.forEach(
         (value:string) => this.messageService.add({type: 'success', text: value})),
       err => err.error.forEach(
         (value:string) => this.messageService.add({type: 'error', text: value}))

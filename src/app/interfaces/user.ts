@@ -11,6 +11,8 @@ export interface LogUser {
 }
 
 export interface ActualUser {
-  id: string,
-  name: string
+  _id: string,
+  name: string,
+  email: string,
+  friends: string[]
 }

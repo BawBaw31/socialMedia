@@ -42,3 +42,15 @@
 .logo {
   background-color: #001013;
 }
+
+
+#left-bar {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+app-message {
+  width: 100%;
+}

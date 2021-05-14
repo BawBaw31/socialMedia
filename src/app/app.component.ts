@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
-import { AccountsService } from './services/accounts.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { AccountsService } from './services/accounts.service';
 export class AppComponent implements OnInit{
   title: string = 'socialMedia';
 
-  constructor(private loginSheet: MatBottomSheet, private accountService: AccountsService){}
+  constructor(private loginSheet: MatBottomSheet, private authService: AuthService){}
 
   ngOnInit() :void {
   }
@@ -21,6 +21,6 @@ export class AppComponent implements OnInit{
   }
 
   isNotLogedIn(){
-    return !this.accountService.getLogState();
+    return !this.authService.getLogState();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AccountsService } from '../../services/accounts.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { ActualUser } from '../../interfaces/user';
 import { Post } from '../../interfaces/post';
 
@@ -11,60 +12,47 @@ import { Post } from '../../interfaces/post';
 })
 export class NewsComponent implements OnInit {
   user :ActualUser= {
-    id: 'noId',
-    name: 'noName'
+    _id: 'no id',
+    name: 'no name',
+    email: 'no email',
+    friends: ['no friends']
   }
 
   posts :Post[] = []
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private accountService: AccountsService) { }
+    private authService: AuthService,
+    private userService: UserService,) { }
 
   ngOnInit(): void {
-    // Check if connected
-    this.accountService.getNews(this.route.snapshot.params.userId).subscribe(
-      res =>{
-        this.user.id = res._id;
-        this.user.name = res.name;
-        this.accountService.setLogState(true);
+    this.getNews();
+  }
 
-        // Request for latest friends posts
-        this.posts.push({
-          autor: "Baw",
-          text: "Merci pour ça !"
-        },
-        {
-          autor: "Brik",
-          text: "Le temps des cerises !"
-        },
-        {
-          autor: "Bok",
-          text: "La pieds montaise !"
-        },
-        {
-          autor: "Bik",
-          text: "Garibaldi sur un cheval de Trois !"
-        },
-        {
-          autor: "Binks",
-          text: "Voilà comment expliquer bien !"
-        },
-        {
-          autor: "Brak",
-          text: "Jamais de la vie !"
-        },
-        {
-          autor: "Blop",
-          text: "Tous les jours !"
-        });
+  getNews() :void {
+    // Check if connected
+    this.userService.getNews().subscribe(
+      res =>{
+        // Get actual user
+        this.user._id = res[1]._id;
+        this.user.name = res[1].name;
+        this.user.email = res[1].email;
+        this.user.friends = res[1].friends;
+
+        // Get actual user news
+        this.posts = [];
+        res[0].forEach((post: { autorName: string; text: string; }) =>
+          this.posts.push({autor: post.autorName, text: post.text}));
+
+        this.authService.setLogState(true);
       },
       err =>{
         // Not connected go home
-        this.accountService.setLogState(false);
+        this.authService.setLogState(false);
         this.router.navigate(['../home']);
       }
-    )
+    );
   }
+
+
 }

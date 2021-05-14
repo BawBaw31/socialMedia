@@ -11,7 +11,6 @@ export class MessageService {
 
   add(message :Message) :void{
     this.messages.push(message);
-    console.log(message.text);
   }
 
   clear() :void {

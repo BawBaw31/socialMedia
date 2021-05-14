@@ -1,9 +1,8 @@
-<app-header ></app-header>
+<app-header (onNewPost)='getNews()' [user]='user.name'></app-header>
 <div id="news-page">
   <!-- Left bar -->
   <div class="test" id="left-bar">
-    <div class="phantom-header test"></div>
-
+    <app-message></app-message>
   </div>
 
   <!-- Content-->

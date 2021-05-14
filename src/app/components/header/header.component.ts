@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { AccountsService } from '../../services/accounts.service';
+import { AuthService } from '../../services/auth.service';
 import { PostCreatorComponent } from '../../tools/post-creator/post-creator.component';
+import { MessageService } from 'src/app/services/message.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,22 +12,32 @@ import { PostCreatorComponent } from '../../tools/post-creator/post-creator.comp
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  _userName :string = '';
 
-  constructor(
-    private accountService :AccountsService,
-    private router :Router,
-    private newPostDialog :MatDialog) { }
+  @Output() onNewPost = new EventEmitter();
 
-  ngOnInit(): void {
-
+  @Input('user')
+  set userName(userName: string) {
+    this._userName = userName || '<User name not found>';
   }
 
-  // Log out
+  constructor(
+    private router :Router,
+    private authService :AuthService,
+    private userService :UserService,
+    private messageService :MessageService,
+    private newPostDialog :MatDialog) { }
+
+
+  ngOnInit(): void {
+  }
+
+    // Log out
   logout() :void{
-    this.accountService.logout().subscribe(
+    this.authService.logout().subscribe(
       res => {
         console.log(res[0]);
-        this.accountService.setLogState(false);
+        this.authService.setLogState(false);
         this.router.navigate(['../home']);
       }
     )
@@ -33,10 +45,28 @@ export class HeaderComponent implements OnInit {
 
   // Open dialog for new post creation
   openNewPostDialog() {
-    let newPostDialogRef = this.newPostDialog.open(PostCreatorComponent, {
+    this.messageService.clear();
+    let postDialogRef = this.newPostDialog.open(PostCreatorComponent, {
       width: '70vw',
       height: '50vh'
     });
+
+    // Make post request when dialog closes
+    postDialogRef.afterClosed().subscribe(
+      res => {
+        console.log(res);
+
+        this.userService.createPost(res)
+        .subscribe(
+          res => {
+            res.forEach(
+            (value:string) => this.messageService.add({type: 'success', text: value}));
+            this.onNewPost.emit();
+          },
+          err => err.error.forEach(
+            (value:string) => this.messageService.add({type: 'error', text: value}))
+        );
+      });
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from '../../tools/authenticator/authenticator.component';
 
 @Component({
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   }
 
   onGetStartedClick() {
-    const bottomSheetRef: MatBottomSheetRef = this.loginSheet.open(AuthenticatorComponent);
+    const loginSheetRef = this.loginSheet.open(AuthenticatorComponent);
   }
 
 }
