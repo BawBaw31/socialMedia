@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-    // Log out
+  // Log out
   logout() :void{
     this.authService.logout().subscribe(
       res => {
@@ -41,6 +41,16 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['../home']);
       }
     )
+  }
+
+  // Go to my profile page
+  profilePage() :void{
+    this.router.navigate(['../profile']);
+  }
+
+  // Go to news page
+  newsPage() :void{
+    this.router.navigate(['../news']);
   }
 
   // Open dialog for new post creation

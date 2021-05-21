@@ -88,7 +88,7 @@ export class AuthenticatorComponent implements OnInit {
       res => {
         this.bottomSheet.dismiss();
         this.authService.setLogState(true);
-        this.router.navigate(['../news', res[0]]);
+        this.router.navigate(['../news']);
       },
       err => err.error.forEach(
         (value:string) => this.messageService.add({type: 'error', text: value}))

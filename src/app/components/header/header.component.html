@@ -1,6 +1,8 @@
 <mat-toolbar>
   <!-- Logo -->
-  <span class='menu-item'>QueLaCarnlu</span>
+  <button (click)="newsPage()" mat-icon-button>
+    <mat-icon>home</mat-icon>
+  </button>
   <!-- Search bar -->
   <form class='menu-item'>
     <mat-form-field>
@@ -17,10 +19,10 @@
   </button>
 
   <!-- Name + Photo -->
-  <div class='menu-item'>
-  <span>{{_userName}}</span>
-  <div mat-card-avatar id="avatar"></div>
-  </div>
+  <a mat-button (click)="profilePage()" class='menu-item'>
+    <div mat-card-avatar id="avatar"></div>
+    <span>{{_userName}}</span>
+  </a>
 
   <!-- Settings menu -->
   <button mat-icon-button [matMenuTriggerFor]="menu">

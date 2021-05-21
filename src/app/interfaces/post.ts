@@ -1,4 +1,5 @@
 export interface Post {
-  autor: string,
-  text: string
+  autorName: string,
+  text: string,
+  date: string
 }

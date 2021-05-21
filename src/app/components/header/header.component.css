@@ -15,12 +15,11 @@ mat-toolbar{
 
 #avatar {
   background-color: pink;
+  margin: 0 5px;
 }
 
 .menu-item{
   padding: 0 14px;
-  display: flex;
-  align-items: center;
 }
 
 form {

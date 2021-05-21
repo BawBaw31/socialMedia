@@ -41,8 +41,7 @@ export class NewsComponent implements OnInit {
 
         // Get actual user news
         this.posts = [];
-        res[0].forEach((post: { autorName: string; text: string; }) =>
-          this.posts.push({autor: post.autorName, text: post.text}));
+        this.posts = res[0];
 
         this.authService.setLogState(true);
       },
@@ -52,6 +51,13 @@ export class NewsComponent implements OnInit {
         this.router.navigate(['../home']);
       }
     );
+  }
+
+  readableDate(date :string) :string {
+    const day = date.split('T')[0].split('-');
+    const hours = date.split('T')[1].split(':');
+    return day[2]+'/'+day[1]+'/'+day[0]+' '+hours[0]+':'+hours[1];
+
   }
 
 

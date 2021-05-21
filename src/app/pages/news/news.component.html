@@ -13,7 +13,8 @@
     <mat-card *ngFor="let post of posts" class="post">
       <mat-card-header>
         <div mat-card-avatar class="logo"></div>
-        <mat-card-title>{{post.autor}}</mat-card-title>
+        <mat-card-title>{{post.autorName}}</mat-card-title>
+        <mat-card-subtitle>{{readableDate(post.date)}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>{{post.text}}</p>

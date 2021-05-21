@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { NewsComponent } from './pages/news/news.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostCreatorComponent } from './tools/post-creator/post-creator.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { PostCreatorComponent } from './tools/post-creator/post-creator.componen
     NewsComponent,
     HeaderComponent,
     FooterComponent,
-    PostCreatorComponent
+    PostCreatorComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { PostCreatorComponent } from './tools/post-creator/post-creator.componen
     MatIconModule,
     MatMenuModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
