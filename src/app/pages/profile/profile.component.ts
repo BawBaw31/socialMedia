@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from 'src/app/interfaces/post';
 import { ActualUser } from 'src/app/interfaces/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,9 +20,37 @@ export class ProfileComponent implements OnInit {
 
   posts :Post[] = []
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getProfile();
+  }
+
+  getProfile() :void {
+    // Check if connected
+    this.userService.getProfile().subscribe(
+      res =>{
+        // Get actual user
+        this.user._id = res[1]._id;
+        this.user.name = res[1].name;
+        this.user.email = res[1].email;
+        this.user.friends = res[1].friends;
+
+        // Get actual user posts
+        this.posts = [];
+        this.posts = res[0];
+
+        this.authService.setLogState(true);
+      },
+      err =>{
+        // Not connected go home
+        this.authService.setLogState(false);
+        this.router.navigate(['../home']);
+      }
+    );
   }
 
 }

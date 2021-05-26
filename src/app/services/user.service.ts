@@ -15,6 +15,11 @@ export class UserService {
     return this.http.get<any>(this.baseUrl+'/news', {'headers': headers, "withCredentials": true});
   }
 
+  getProfile() :Observable<any>{
+    const headers = {'content-type': 'application/json'};
+    return this.http.get<any>(this.baseUrl+'/profile', {'headers': headers, "withCredentials": true});
+  }
+
   createPost(post :String) :Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify({"text": post});

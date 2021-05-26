@@ -11,6 +11,7 @@ import { Post } from '../../interfaces/post';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
+
   user :ActualUser= {
     _id: 'no id',
     name: 'no name',
@@ -57,7 +58,6 @@ export class NewsComponent implements OnInit {
     const day = date.split('T')[0].split('-');
     const hours = date.split('T')[1].split(':');
     return day[2]+'/'+day[1]+'/'+day[0]+' '+hours[0]+':'+hours[1];
-
   }
 
 
