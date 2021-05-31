@@ -26,4 +26,10 @@ export class UserService {
     return this.http.post<any>(this.baseUrl + '/create', body, {'headers': headers, "withCredentials": true});
   }
 
+  unfollow(friendName :String) :Observable<any> {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify({"friend": friendName});
+    return this.http.post<any>(this.baseUrl + '/delete-friend', body, {'headers': headers, "withCredentials": true});
+  }
+
 }

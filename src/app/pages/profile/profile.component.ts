@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Post } from 'src/app/interfaces/post';
 import { ActualUser } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,14 +17,15 @@ export class ProfileComponent implements OnInit {
     name: 'no name',
     email: 'no email',
     friends: ['no friends']
-  }
+  };
 
-  posts :Post[] = []
+  posts :Post[] = [];
 
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getProfile();
@@ -50,6 +52,18 @@ export class ProfileComponent implements OnInit {
         this.authService.setLogState(false);
         this.router.navigate(['../home']);
       }
+    );
+  }
+
+  unfollow(friendName :String) :void {
+    this.userService.unfollow(friendName).subscribe(
+      res => {
+        res.forEach(
+        (value:string) => this.messageService.add({type: 'success', text: value}));
+        this.getProfile();
+      },
+      err => err.error.forEach(
+        (value:string) => this.messageService.add({type: 'error', text: value}))
     );
   }
 

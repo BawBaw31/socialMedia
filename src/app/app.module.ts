@@ -27,6 +27,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostCreatorComponent } from './tools/post-creator/post-creator.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { WallComponent } from './pages/wall/wall.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HeaderComponent,
     FooterComponent,
     PostCreatorComponent,
-    ProfileComponent
+    ProfileComponent,
+    WallComponent
   ],
   imports: [
     BrowserModule,

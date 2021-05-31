@@ -5,8 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { NewsComponent } from './pages/news/news.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { WallComponent } from './pages/wall/wall.component';
 
 const routes: Routes = [
+  {path:"wall/:name", component: WallComponent},
   {path:"news", component: NewsComponent},
   {path:"profile", component: ProfileComponent},
   {path: "", component: HomeComponent},
