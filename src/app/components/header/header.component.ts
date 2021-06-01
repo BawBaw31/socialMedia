@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
+import {map, startWith} from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { PostCreatorComponent } from '../../tools/post-creator/post-creator.component';
 import { MessageService } from 'src/app/services/message.service';
@@ -13,6 +16,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit {
   _userName :string = '';
+
+  myControl = new FormControl('');
+  allUsers :string[] = [];
+  filteredNames: Observable<string[]> | undefined;
 
   @Output() onNewPost = new EventEmitter();
 
@@ -30,6 +37,31 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // getting all users names
+    this.userService.getAllNames().subscribe(
+      res => this.allUsers = res[0],
+      err => console.log(err.error)
+    );
+
+    //  filtering options
+    this.filteredNames = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+  // filter search
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allUsers.filter(userName => userName.toLowerCase().includes(filterValue));
+  }
+
+  // on seach submit
+  onSearchSubmit() :void{
+    // go to user's wall
+    this.router.navigate([`../wall/${this.myControl.value}`]);
   }
 
   // Log out

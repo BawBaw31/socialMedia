@@ -51,7 +51,7 @@ export class WallComponent implements OnInit {
       err =>{
         // Not connected go home
         this.authService.setLogState(false);
-        this.router.navigate(['../home']);
+        this.router.navigate(['../news']);
       }
     );
   }

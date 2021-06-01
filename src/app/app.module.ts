@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // MaterialUI imports
 import { MatButtonModule } from '@angular/material/button';
@@ -16,6 +17,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -48,6 +50,7 @@ import { WallComponent } from './pages/wall/wall.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatBottomSheetModule,
     MatCardModule,
@@ -56,7 +59,8 @@ import { WallComponent } from './pages/wall/wall.component';
     MatMenuModule,
     MatInputModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
