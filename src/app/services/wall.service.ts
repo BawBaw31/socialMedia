@@ -15,5 +15,12 @@ export class WallService {
     const headers = {'content-type': 'application/json'};
     return this.http.get<any>(this.baseUrl+`/${userName}`, {'headers': headers, "withCredentials": true});
   }
+
+  // check if is friend
+  isFriend(friendName :String) :Observable<any>{
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify({"friendName": friendName});
+    return this.http.post<any>(this.baseUrl+'/is-friend', body, {'headers': headers, "withCredentials": true});
+  }
 }
 

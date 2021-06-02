@@ -61,14 +61,14 @@ export class HeaderComponent implements OnInit {
   // on seach submit
   onSearchSubmit() :void{
     // go to user's wall
-    this.router.navigate([`../wall/${this.myControl.value}`]);
+    this.router.navigateByUrl('/', {skipLocationChange: true})
+    .then(()=>this.router.navigate([`../wall/${this.myControl.value}`]));
   }
 
   // Log out
   logout() :void{
     this.authService.logout().subscribe(
       res => {
-        console.log(res[0]);
         this.authService.setLogState(false);
         this.router.navigate(['../home']);
       }
@@ -82,7 +82,8 @@ export class HeaderComponent implements OnInit {
 
   // Go to news page
   newsPage() :void{
-    this.router.navigate(['../news']);
+    this.router.navigateByUrl('/', {skipLocationChange: true})
+    .then(()=>this.router.navigate([`../news`]));
   }
 
   // Open dialog for new post creation
@@ -96,8 +97,6 @@ export class HeaderComponent implements OnInit {
     // Make post request when dialog closes
     postDialogRef.afterClosed().subscribe(
       res => {
-        console.log(res);
-
         this.userService.createPost(res)
         .subscribe(
           res => {

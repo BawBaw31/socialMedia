@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit {
     private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.messageService.clear();
     this.getProfile();
   }
 
@@ -65,6 +66,18 @@ export class ProfileComponent implements OnInit {
       err => err.error.forEach(
         (value:string) => this.messageService.add({type: 'error', text: value}))
     );
+  }
+
+  deletePost(postId:number) :void {
+    this.userService.deletePost(postId).subscribe(
+      res => {
+        res.forEach(
+        (value:string) => this.messageService.add({type: 'success', text: value}));
+        this.getProfile();
+      },
+      err => err.error.forEach(
+        (value:string) => this.messageService.add({type: 'error', text: value}))
+    )
   }
 
 }

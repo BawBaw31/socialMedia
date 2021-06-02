@@ -1,8 +1,7 @@
 <h1 mat-dialog-title>New post</h1>
-<div mat-dialog-content>
-  <mat-form-field>
-    <textarea matInput [(ngModel)]="post" rows="10" placeholder="Right what you want"></textarea>
-  </mat-form-field>
+<div mat-dialog-content><ckeditor
+    [(ngModel)]="post">
+    </ckeditor>
 </div>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="post">Publish</button>

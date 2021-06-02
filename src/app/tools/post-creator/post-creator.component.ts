@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-creator.component.css']
 })
 export class PostCreatorComponent implements OnInit {
-  post :string = "";
+  post :HTMLElement | undefined;
 
   constructor() { }
 

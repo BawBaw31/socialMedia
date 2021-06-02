@@ -1,9 +1,11 @@
-import {Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/interfaces/post';
 import { ActualUser } from 'src/app/interfaces/user';
 import { WallService } from 'src/app/services/wall.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-wall',
@@ -22,15 +24,27 @@ export class WallComponent implements OnInit {
 
   wallPosts :Post[] = [];
 
+  isFriend :boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private messageService: MessageService,
     private wallService: WallService,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
+    this.messageService.clear();
     this.getWall();
+    this.checkIfFriend();
+  }
+
+  checkIfFriend() :void{
+    this.wallService.isFriend(this.wallName).subscribe(
+      res => {this.isFriend = res[0]}
+    );
   }
 
   getWall() :void{
@@ -55,5 +69,31 @@ export class WallComponent implements OnInit {
       }
     );
   }
+
+  follow() :void {
+    this.userService.follow(this.wallName).subscribe(
+      res => {
+        res.forEach(
+        (value:string) => this.messageService.add({type: 'success', text: value}));
+        this.checkIfFriend();
+      },
+      err => err.error.forEach(
+        (value:string) => this.messageService.add({type: 'error', text: value}))
+    )
+  }
+
+  unfollow() :void {
+    this.userService.unfollow(this.wallName).subscribe(
+      res => {
+        res.forEach(
+        (value:string) => this.messageService.add({type: 'success', text: value}));
+        this.checkIfFriend();
+      },
+      err => err.error.forEach(
+        (value:string) => this.messageService.add({type: 'error', text: value}))
+    )
+  }
+
+
 
 }

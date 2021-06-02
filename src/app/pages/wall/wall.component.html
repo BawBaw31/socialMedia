@@ -1,1 +1,42 @@
-<h1>{{wallName}}</h1>
+<app-header [user]='user.name'></app-header>
+
+<!-- Header Phantom -->
+<div class="phantom-header">
+</div>
+
+<!-- Banner + Profile photo -->
+<div id="wall-header">
+</div>
+
+<div id="wall-page">
+  <!-- Left bar -->
+  <div class="test" id="left-bar">
+    <app-message></app-message>
+  </div>
+
+  <!-- Content-->
+  <div class="test" id="middle-bar">
+
+    <!-- All my posts -->
+    <mat-card *ngFor="let post of wallPosts" class="post">
+      <mat-card-header>
+        <div mat-card-avatar class="logo"></div>
+        <mat-card-title>{{post.autorName}}</mat-card-title>
+        <mat-card-subtitle>{{post.date}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content innerHTML="{{post.text}}"></mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Likes</button>
+        <button mat-button>Comments</button>
+        <button mat-button>Reposts</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
+  <!-- Right bar -->
+  <div class="test" id="right-bar">
+    <button (click)="unfollow()" *ngIf="isFriend" mat-button color='warn'>Unfollow</button>
+    <button (click)="follow()" *ngIf="!isFriend" mat-button color='warn'>Follow</button>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 export interface Post {
+  _id: number,
   autorName: string,
-  text: string,
+  text: HTMLElement,
   date: string
 }

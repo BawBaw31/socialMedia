@@ -31,10 +31,22 @@ export class UserService {
     return this.http.post<any>(this.baseUrl + '/create', body, {'headers': headers, "withCredentials": true});
   }
 
+  deletePost(postId :number) :Observable<any> {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify({"postId": postId});
+    return this.http.post<any>(this.baseUrl + '/delete', body, {'headers': headers, "withCredentials": true});
+  }
+
   unfollow(friendName :String) :Observable<any> {
     const headers = {'content-type': 'application/json'};
     const body = JSON.stringify({"friend": friendName});
     return this.http.post<any>(this.baseUrl + '/delete-friend', body, {'headers': headers, "withCredentials": true});
+  }
+
+  follow(friendName :String) :Observable<any> {
+    const headers = {'content-type': 'application/json'};
+    const body = JSON.stringify({"friend": friendName});
+    return this.http.post<any>(this.baseUrl + '/add-friend', body, {'headers': headers, "withCredentials": true});
   }
 
 }

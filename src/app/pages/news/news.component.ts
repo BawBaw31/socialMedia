@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { ActualUser } from '../../interfaces/user';
 import { Post } from '../../interfaces/post';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-news',
@@ -24,13 +25,16 @@ export class NewsComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService,) { }
+    private userService: UserService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.messageService.clear();
     this.getNews();
   }
 
   getNews() :void {
+
     // Check if connected
     this.userService.getNews().subscribe(
       res =>{
