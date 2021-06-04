@@ -54,3 +54,23 @@
 app-message {
   width: 100%;
 }
+
+/* Responsive */
+@media (max-width: 600px) {
+  #news-page {
+    display: flex;
+    justify-content: center;
+  }
+
+  #middle-bar {
+    width: 95%;
+  }
+  #left-bar {
+    display: none;
+  }
+  #right-bar {
+    display: none;
+  }
+
+
+}

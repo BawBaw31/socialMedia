@@ -31,3 +31,10 @@ form {
 form mat-form-field {
   width: 100%;
 }
+
+/* Responsive */
+@media (max-width: 600px) {
+  #user-name {
+    display:none;
+  }
+}

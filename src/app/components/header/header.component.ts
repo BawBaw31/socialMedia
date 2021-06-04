@@ -90,8 +90,8 @@ export class HeaderComponent implements OnInit {
   openNewPostDialog() {
     this.messageService.clear();
     let postDialogRef = this.newPostDialog.open(PostCreatorComponent, {
-      width: '70vw',
-      height: '50vh'
+      width: '80vw',
+      height: '60vh'
     });
 
     // Make post request when dialog closes

@@ -4,17 +4,18 @@
 }
 
 #wall-header {
-  height: 40vh;
+  height: 30vh;
   color: black;
-  background-color: pink;
+  background-color: #F0FFF0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 #wall-page{
   width: 100%;
-  height: 50vh;
+  height: 60vh;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 100%;
@@ -67,4 +68,22 @@
 
 app-message {
   width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #wall-page {
+    display: flex;
+    justify-content: center;
+  }
+
+  #middle-bar {
+    width: 95%;
+  }
+  #left-bar {
+    display: none;
+  }
+  #right-bar {
+    display: none;
+  }
 }

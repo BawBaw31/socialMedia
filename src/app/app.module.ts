@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
 
 // Component imports
 import { AppComponent } from './app.component';
@@ -62,7 +63,8 @@ import { WallComponent } from './pages/wall/wall.component';
     MatInputModule,
     MatDialogModule,
     MatTabsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
